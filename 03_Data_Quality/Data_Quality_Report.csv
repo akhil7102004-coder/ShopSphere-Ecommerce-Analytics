@@ -1,0 +1,7 @@
+Issue ID,Dataset,Issue,Affected Records,Affected %
+DQ001,Customers,Duplicate customer IDs,30,0.075
+DQ002,Customers,Missing customer city,20,0.05
+DQ003,Products,Missing product cost,15,0.5
+DQ004,Orders,Duplicate order IDs,12,0.007
+DQ005,Order Items,Zero or negative quantity,40,0.012
+DQ006,Payments,Missing payment method,25,0.014

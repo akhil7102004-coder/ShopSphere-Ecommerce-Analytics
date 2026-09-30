@@ -1,0 +1,16 @@
+product_id,product_name,category,subcategory,cost_price,list_price,brand,cost_ratio,cost_price_estimated,cost_price_final,cost_price_source
+P10062,Games Product 63,Toys,Games,,4801.24,Brand B,,3834.0094510446543,3834.0094510446543,Estimated
+P10145,Outdoor Product 146,Sports,Outdoor,,7923.81,Private Label,,6334.047055636159,6334.047055636159,Estimated
+P10170,Home Decor Product 171,Home & Kitchen,Home Decor,,7585.22,Private Label,,6051.870988145373,6051.870988145373,Estimated
+P10197,Men Product 198,Fashion,Men,,1076.6,Private Label,,863.826345230133,863.826345230133,Estimated
+P10536,Equipment Product 537,Sports,Equipment,,522.38,Private Label,,417.57431095940166,417.57431095940166,Estimated
+P11030,Equipment Product 1031,Sports,Equipment,,1013.27,Brand C,,809.9764961633924,809.9764961633924,Estimated
+P11306,Cookware Product 1307,Home & Kitchen,Cookware,,279.93,Brand A,,223.34226900624296,223.34226900624296,Estimated
+P11336,Games Product 1337,Toys,Games,,417.83,Private Label,,333.6563406390824,333.6563406390824,Estimated
+P11466,Snacks Product 1467,Grocery,Snacks,,702.32,Brand B,,569.3143510003246,569.3143510003246,Estimated
+P12141,Packaged Foods Product 2142,Grocery,Packaged Foods,,2843.39,Brand D,,2304.907638242984,2304.907638242984,Estimated
+P12274,Outdoor Product 2275,Sports,Outdoor,,236.54,Brand A,,189.08271280358525,189.08271280358525,Estimated
+P12326,Cookware Product 2327,Home & Kitchen,Cookware,,327.74,Private Label,,261.48749774624395,261.48749774624395,Estimated
+P12467,Staples Product 2468,Grocery,Staples,,2007.7,Private Label,,1627.4809524196257,1627.4809524196257,Estimated
+P12478,Mobiles Product 2479,Electronics,Mobiles,,57390.81,Brand D,,45895.81500253821,45895.81500253821,Estimated
+P12977,Personal Care Product 2978,Beauty,Personal Care,,2285.98,Brand B,,1823.9544671182387,1823.9544671182387,Estimated

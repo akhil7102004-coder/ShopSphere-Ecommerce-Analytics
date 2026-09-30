@@ -1,0 +1,8 @@
+dataset,original_rows,clean_rows,records_removed
+Customers,40030,40000,30
+Products,3000,3000,0
+Orders,180012,180000,12
+Order Items,339053,339013,40
+Payments,180000,180000,0
+Returns,18000,18000,0
+Marketing,180,180,0
