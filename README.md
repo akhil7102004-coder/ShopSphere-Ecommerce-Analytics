@@ -637,10 +637,3 @@ End-to-End ETL Pipeline
 🔗 Repository
 
 ShopSphere E-Commerce Analytics on GitHub
-
-
-### One important thing before you upload it
-
-Your current GitHub README is only the short title, as shown in your screenshot. Replace it with the full version above.
-
-Since you've already migrated the PBIX to Git LFS, **don't upload the PBIX manually through the browser*
