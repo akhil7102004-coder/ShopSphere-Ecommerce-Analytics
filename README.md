@@ -96,6 +96,7 @@ Business Insights & Recommendations
 
 
 🗂️ Project Structure
+
 ShopSphere-Ecommerce-Analytics/
 │
 ├── 01_Business_Requirements/
@@ -139,11 +140,29 @@ ShopSphere-Ecommerce-Analytics/
     ├── ETL_Documentation.md
     ├── SQL_Documentation.md
     └── PowerBI_Documentation.md
+
+
+
+📦 Dataset Overview
+
+The project contains seven main datasets:
+
+Dataset	Records
+Customers	40,000
+Products	3,000
+Orders	180,000
+Order Items	339,013
+Payments	180,000
+Returns	18,000
+Marketing Campaigns	180
+
+The raw data contains intentionally introduced data-quality issues to demonstrate a realistic analytics workflow.
+
 🧹 Data Quality & Cleaning
 
 The raw datasets intentionally contain realistic data-quality issues to demonstrate a practical ETL workflow.
 
-Identified issues
+Identified Issues
 Dataset	Issue	Action
 Customers	Duplicate customer records	Deduplicated
 Customers	Missing cities	Replaced with Unknown
@@ -151,7 +170,7 @@ Products	Missing cost prices	Estimated using category-level cost ratios
 Orders	Duplicate order records	Deduplicated
 Order Items	Zero/negative quantities	Quarantined
 Payments	Missing payment methods	Recovered using order information
-Data cleaning results
+Data Cleaning Results
 Dataset	Raw Rows	Clean Rows
 Customers	40,030	40,000
 Products	3,000	3,000
@@ -172,7 +191,7 @@ Python
 Pandas
 NumPy
 Jupyter Notebook
-Main ETL operations
+Main ETL Operations
 Data loading
 Missing-value analysis
 Duplicate detection
@@ -191,7 +210,7 @@ Export of cleaned datasets
 The cleaned datasets were loaded into a MySQL database named:
 
 shopsphere
-Database tables
+Database Tables
 customers
 products
 orders
@@ -199,7 +218,7 @@ order_items
 payments
 returns
 marketing_campaigns
-SQL analysis includes
+SQL Analysis Includes
 Revenue analysis
 Order analysis
 Average Order Value
@@ -320,7 +339,7 @@ Marketing ROAS	4.71
 Profit figures are estimated using the available product cost information. Missing product costs were estimated during the ETL process.
 
 🔍 Key Business Insights
-Sales
+Sales Performance
 Gross revenue reached approximately ₹1.65 billion across 180,000 orders.
 The overall Average Order Value is approximately ₹9,178.97.
 Electronics represents approximately 50.25% of total revenue.
@@ -344,11 +363,11 @@ Approximately 5,663 customers placed only one order.
 Repeat customers represent approximately 83.61% of purchasing customers.
 Customer Segments
 
-Revenue is concentrated in the:
+Revenue is concentrated in:
 
-Standard segment
-Premium segment
-Business segment
+Standard
+Premium
+Business
 
 The Standard segment contributes the largest overall revenue because of its larger customer base.
 
@@ -405,8 +424,12 @@ Size Issues
 Damaged Products
 Wrong Items
 
-Potential areas for improvement include product descriptions, quality checks, packaging, and fulfillment.
+Potential areas for improvement include:
 
+Product descriptions
+Quality checks
+Packaging
+Fulfillment
 3. Strengthen Customer Retention
 
 Repeat customers represent a significant portion of purchasing customers.
@@ -448,22 +471,77 @@ Estimated profit and profit margin were therefore incorporated into the product 
 
 The Power BI model uses DAX measures including:
 
+Total Revenue
 Total Revenue =
 SUM('shopsphere order_items'[gross_amount])
+Total Orders
 Total Orders =
 DISTINCTCOUNT('shopsphere orders'[order_id])
+Total Customers
 Total Customers =
 DISTINCTCOUNT('shopsphere customers'[customer_id])
+Total Units
+Total Units =
+SUM('shopsphere order_items'[quantity])
+Average Order Value
 AOV =
 DIVIDE(
     [Total Revenue],
     DISTINCTCOUNT('shopsphere order_items'[order_id])
 )
+Returned Orders
+Returned Orders =
+DISTINCTCOUNT('shopsphere returns'[order_id])
+Return Rate
 Return Rate =
 DIVIDE(
     [Returned Orders],
     [Total Orders]
 )
+Completed Orders
+Completed Orders =
+CALCULATE(
+    [Total Orders],
+    'shopsphere orders'[order_status] = "Completed"
+)
+Completed Order Rate
+Completed Order Rate =
+DIVIDE(
+    [Completed Orders],
+    [Total Orders]
+)
+Purchasing Customers
+Purchasing Customers =
+DISTINCTCOUNT('shopsphere orders'[customer_id])
+Average Orders per Customer
+Average Orders per Customer =
+DIVIDE(
+    [Total Orders],
+    [Purchasing Customers]
+)
+Repeat Customers
+Repeat Customers =
+COUNTROWS(
+    FILTER(
+        VALUES('shopsphere customers'[customer_id]),
+        CALCULATE(COUNTROWS('shopsphere orders')) >= 2
+    )
+)
+One-Time Customers
+One-Time Customers =
+COUNTROWS(
+    FILTER(
+        VALUES('shopsphere customers'[customer_id]),
+        CALCULATE(COUNTROWS('shopsphere orders')) = 1
+    )
+)
+Revenue per Purchasing Customer
+Revenue per Purchasing Customer =
+DIVIDE(
+    [Total Revenue],
+    [Purchasing Customers]
+)
+Estimated Profit
 Estimated Profit =
 SUMX(
     'shopsphere order_items',
@@ -481,7 +559,7 @@ Customers
     │
     │ 1 : *
     ▼
- Orders
+Orders
     │
     ├──────────────► Payments
     │
@@ -493,39 +571,41 @@ Order Items
     ▲
     │ * : 1
     │
- Products
+Products
 
 Marketing campaigns are analyzed as a separate campaign dataset.
 
 🛠️ Technology Stack
 Technology	Purpose
-Python	Data cleaning & ETL
-Pandas	Data manipulation
-NumPy	Numerical processing
-Jupyter Notebook	Data profiling & ETL
-MySQL	Relational database
-SQL	Business analysis
-Power BI	Dashboard & visualization
-DAX	KPI calculations
-Git	Version control
-GitHub	Project repository
-Git LFS	Power BI file storage
+Python	Data Cleaning & ETL
+Pandas	Data Manipulation
+NumPy	Numerical Processing
+Jupyter Notebook	Data Profiling & ETL
+MySQL	Relational Database
+SQL	Business Analysis
+Power BI	Dashboard & Visualization
+DAX	KPI Calculations
+Git	Version Control
+GitHub	Project Repository
+Git LFS	Power BI File Storage
 📚 Skills Demonstrated
 
 This project demonstrates practical experience with:
 
 Data Analytics
 Exploratory Data Analysis
-KPI development
-Business analysis
-Customer analytics
-Product analytics
-Marketing analytics
+KPI Development
+Business Analysis
+Customer Analytics
+Product Analytics
+Marketing Analytics
+Business Intelligence
 Data Cleaning
 Missing-value treatment
 Duplicate detection
 Data validation
-Outlier/invalid-record handling
+Invalid-record handling
+Referential integrity checks
 Data-quality reporting
 SQL
 SELECT
@@ -533,26 +613,26 @@ WHERE
 GROUP BY
 HAVING
 JOIN
+Aggregate Functions
+CASE Statements
 Subqueries
-Aggregate functions
-CASE statements
 CTEs
-Business KPI calculations
+Business KPI Calculations
 Power BI
-Data modeling
+Data Modeling
 Relationships
 DAX
-KPI cards
-Interactive dashboards
+KPI Cards
+Interactive Dashboards
 Slicers
-Drill-down analysis
-Business storytelling
+Drill-down Analysis
+Business Storytelling
 Python
 Pandas
 NumPy
-Data profiling
-Data transformation
-ETL automation
+Data Profiling
+Data Transformation
+ETL
 📖 Documentation
 
 Detailed documentation is available in:
@@ -569,6 +649,37 @@ Power BI Documentation
 Business insights are available in:
 
 07_Insights/Business_Insights.md
+🚀 How to Explore the Project
+1. Explore the Raw Data
+
+Start with:
+
+02_Raw_Data/
+2. Review Data Quality
+
+Open:
+
+03_Data_Quality/01_Data_Profiling.ipynb
+3. Review the ETL Process
+
+Open:
+
+04_Python_ETL/01_Data_Cleaning.ipynb
+4. Explore SQL Analysis
+
+Open:
+
+05_SQL/
+5. Open the Power BI Dashboard
+
+Open:
+
+06_PowerBI/ShopSphere_Ecommerce_Analytics.pbix
+6. Read the Business Insights
+
+Open:
+
+07_Insights/Business_Insights.md
 ⚠️ Dataset & Project Disclaimer
 
 ShopSphere is a simulated portfolio project created for educational and demonstration purposes.
@@ -579,45 +690,12 @@ Some values, including estimated product costs and profitability, are derived as
 
 The project demonstrates the analytics workflow and methodology rather than representing the actual performance of a real organization.
 
-🚀 How to Explore the Project
-1. Explore the raw data
-
-Start with:
-
-02_Raw_Data/
-2. Review data quality
-
-Open:
-
-03_Data_Quality/01_Data_Profiling.ipynb
-3. Review the ETL process
-
-Open:
-
-04_Python_ETL/01_Data_Cleaning.ipynb
-4. Explore SQL analysis
-
-Open:
-
-05_SQL/
-5. Open the Power BI dashboard
-
-Open:
-
-06_PowerBI/ShopSphere_Ecommerce_Analytics.pbix
-6. Read the business insights
-
-Open:
-
-07_Insights/Business_Insights.md
 👨‍💻 Author
-
 AKHIL A.
 
 B.Tech Computer Science & Engineering
 
-Interested in:
-
+Areas of Interest
 Data Analytics
 Business Intelligence
 SQL
@@ -636,4 +714,6 @@ Python + SQL + Power BI
 End-to-End ETL Pipeline
 🔗 Repository
 
-ShopSphere E-Commerce Analytics on GitHub
+ShopSphere E-Commerce Analytics
+
+https://github.com/akhil7102004-coder/ShopSphere-Ecommerce-Analytics    
